@@ -5,6 +5,7 @@ import pandas as pd
 
 csv_filename_akun = "akun.csv"
 csv_filename_inventori = "data_sepatu.csv"
+csv_filename_output = "output.csv"
 
 def check_database():
     if not os.path.exists(csv_filename_akun):
@@ -15,6 +16,11 @@ def check_database():
             csv_writer.writerow({"Username": "admin", "Password": 1234})
     if not os.path.exists(csv_filename_inventori):
         with open(csv_filename_inventori, mode='w') as csv_file:
+            fieldnames = ["Kode", "Nama", "Merk", "Ukuran", "Warna", "Harga", "Jumlah"]
+            csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+            csv_writer.writeheader()
+    if not os.path.exists(csv_filename_output):
+        with open(csv_filename_output, mode="w") as csv_file:
             fieldnames = ["Kode", "Nama", "Merk", "Ukuran", "Warna", "Harga", "Jumlah"]
             csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             csv_writer.writeheader()
@@ -43,22 +49,24 @@ def login():
     username = input("\t\t\t\t\tUsername : ")
     password = input("\t\t\t\t\tPassword : ")
     akun = []
-    data_found = []
-    indeks = 0
     with open(csv_filename_akun, mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
             akun.append(row)
+    data_found = []
+    indeks = 0
     for data in akun:
-        if data["Username"] == username:
+        if data["Username"] == username and data["Password"] == password:
             data_found = akun[indeks]
+            break
         indeks += 1
     if len(data_found) > 0:
-        if data_found["Password"] == password:
-            print("\n\t\t\t\t\t<<<< Login berhasil >>>>")
-            balik_ke_menu_awal()
+        print("\n\t\t\t\t\t<<<< Login berhasil >>>>")
+        data_found.clear()
+        balik_ke_menu_awal()    
     else:
         print("\n<<<< USERNAME ATAU PASSWORD SALAH >>>>")
+        data_found.clear()
         balik_ke_login()
 
 def balik_ke_login():
@@ -100,6 +108,7 @@ def menu_awal():
     menu_pilihan = input("Masukkan Pilihan> ")
     if menu_pilihan == "1":
         tampil_data()
+        pilih_sorting()
     elif menu_pilihan == "2":
         tambah_data()
     elif menu_pilihan == "3":
@@ -121,37 +130,111 @@ def tampil_data(): # Masukkan Pilihan Sorting data secara Ascending dan Descendi
     try:
         f = pd.read_csv(csv_filename_inventori, sep=',') 
         print(tabulate(f, headers= f, tablefmt='fancy_outline', stralign='left', numalign='left', showindex=False))
-        print("===========================================================================")
-        print("|                                MENU SORTING                             |")
-        print("===========================================================================")
-        print("|                                                                         |")
-        print("| Silahkan Pilih Sorting Data Secara :                                    |")
-        print("| [1] Ascending                                                           |")
-        print("| [2] Decending                                                           |")
-        print("|                                                                         |")
-        print("===========================================================================")
-        pilih = input("Masukkan Pilihan > ")
-        if pilih == "1":
-            cara = "Ascending"
-            sorting(cara)
-            balik_ke_menu_awal()
-        elif pilih == "2":
-            cara = "Decending"
-            sorting(cara)
-            balik_ke_menu_awal()
-        else:
-            print("<<<<< INVALID INPUT >>>>>")
-            balik_ke_menu_awal()
     except:
         print("<<<< DATA KOSONG >>>>")
         input("\n[ Tekan ENTER untuk melanjutkan.... ]")
         menu_awal()
 
-def sorting(cara):
+def pilih_sorting():
+    tampil_data()
+    print("===========================================================================")
+    print("|                                MENU SORTING                             |")
+    print("===========================================================================")
+    print("|                                                                         |")
+    print("| Silahkan Pilih Sorting Data Secara :                                    |")
+    print("| [1] Ascending                                                           |")
+    print("| [2] Decending                                                           |")
+    print("|                                                                         |")
+    print("===========================================================================")
+    pilih = input("Masukkan Pilihan > ")
+    if pilih == "1":
+        cara = "Ascending"
+        pilih_asce_desc(cara)
+        balik_ke_menu_awal()
+    elif pilih == "2":
+        cara = "Decending"
+        pilih_asce_desc(cara)
+        balik_ke_menu_awal()
+    else:
+        print("<<<<< INVALID INPUT >>>>>")
+        balik_ke_menu_awal()
+
+def pilih_asce_desc(cara):
+    clear_screen()
     if cara == "Ascending":
-        print("Ascending")
-    elif cara == "Decending":
+        tampil_data()
+        print("===========================================================================")
+        print("|                                ASCENDING                                |")
+        print("===========================================================================")
+        print("|                                                                         |")
+        print("| Silahkan Pilih Item Berdasarkan Yang Ingin Di Sorting :                 |")
+        print("| [1] Kode Barang                                                         |")
+        print("| [2] Nama Barang                                                         |")
+        print("| [3] Jumlah  Barang                                                      |")
+        print("|                                                                         |")
+        print("===========================================================================")
+        pilih_sort = input("Masukkan Pilihan > ")
+        data_sementara = []
+        with open(csv_filename_inventori, mode='r') as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            for row in csv_reader:
+                data_sementara.append(row)
+        if pilih_sort == "1":
+            clear_screen()
+            tampil_data()
+            print("===========================================================================")
+            print("|                                ASCENDING                                |")
+            print("===========================================================================")
+            print("|                                                                         |")
+            print("| Silahkan Pilih Metode Sort :                                            |")
+            print("| [1] Bubble Sort                                                         |")
+            print("| [2] Insertion Sort                                                      |")
+            print("| [3] Selection Sort                                                      |")
+            print("| [4] Quick Sort                                                          |")
+            print("| [5] Merge Sort                                                          |")
+            print("| [6] Shell Sort                                                          |")
+            print("| [0] Kembali                                                             |")
+            print("|                                                                         |")
+            print("===========================================================================")
+            pilih_metode = input("Masukkan Pilihan > ")
+            if pilih_metode == "1":
+                res = {}
+                method = "Ascending"
+                with open(csv_filename_inventori, mode='r') as csv_file: # BELUM INI
+                    csv_reader = csv.DictReader(csv_file)
+                    for row in csv_reader:
+                        res.update(row)
+                print(res)
+    elif cara == "Decending": # BELUM
         print("Descending")
+
+def bubbleSort(array, method):
+    for i in range(len(array)):
+        for j in range(0, len(array) - i - 1):
+            if method == "Ascending":
+                if array[j] > array[j + 1]:
+                    array[j], array[j + 1] = array[j + 1], array[j]
+    return array
+
+def insertionSort(array, method):
+    for step in range(1, len(array)):
+        key = array[step]
+        j = step - 1
+        if method == "Ascending":
+            while j >= 0 and key < array[j]:
+                array[j + 1] = array[j]
+                j = j - 1
+            array[j + 1] = key
+
+def selectionSort(array, size, method):
+    for step in range(size):
+        min_idx = step
+        for i in range(step + 1, size):
+            if method == "Ascending":
+                if array[i] < array[min_idx]:
+                    min_idx = i
+        array[step], array[min_idx] = array[min_idx],array[step]
+
 
 def tambah_data():
     tampil_data()
@@ -485,6 +568,5 @@ def edit_data():
         input("\n[ Tekan ENTER untuk melanjutkan.... ]")
         edit_data()
 
+check_database()
 login()
-
-
