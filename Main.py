@@ -1,4 +1,3 @@
-import pynput
 from tabulate import tabulate
 import csv
 import os
