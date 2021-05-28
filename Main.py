@@ -105,7 +105,7 @@ def menu_awal():
     print("| [0] Exit                                                                                                |")
     print("|                                                                                                         |")
     print("===========================================================================================================")
-    menu_pilihan = input("Masukkan Pilihan> ")
+    menu_pilihan = input("Masukkan Pilihan > ")
     if menu_pilihan == "1":
         tampil_data()
         pilih_sorting()
@@ -174,11 +174,6 @@ def pilih_asce_desc(cara):
         print("|                                                                         |")
         print("===========================================================================")
         pilih_sort = input("Masukkan Pilihan > ")
-        data_sementara = []
-        with open(csv_filename_inventori, mode='r') as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-            for row in csv_reader:
-                data_sementara.append(row)
         if pilih_sort == "1":
             clear_screen()
             tampil_data()
@@ -198,12 +193,12 @@ def pilih_asce_desc(cara):
             print("===========================================================================")
             pilih_metode = input("Masukkan Pilihan > ")
             if pilih_metode == "1":
-                res = {}
+                res = []
                 method = "Ascending"
                 with open(csv_filename_inventori, mode='r') as csv_file: # BELUM INI
                     csv_reader = csv.DictReader(csv_file)
                     for row in csv_reader:
-                        res.update(row)
+                        res.append(row)
                 print(res)
     elif cara == "Decending": # BELUM
         print("Descending")
