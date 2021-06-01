@@ -835,17 +835,20 @@ def hapus_data():
     data_sementara = []
     kodebarang = input("Masukkan Kode Barang > ")
     with open(csv_filename_inventori, 'r') as csv_file:
-        reader = csv.reader(csv_file)
+        reader = csv.DictReader(csv_file)
         for row in reader:
             data_sementara.append(row)
-            for field in row:
-                if field == kodebarang:
-                    data_sementara.remove(row)
+            for j in data_sementara:
+                if j["Kode"] == kodebarang:
+                    data_sementara.remove(j)
     yakin = str(input("Apakah Anda Yakin? y/t > "))
     if yakin == 'y':
-        with open(csv_filename_inventori, 'w') as writeFile:
-            writer = csv.writer(writeFile, lineterminator='\n')
-            writer.writerows(data_sementara)
+        with open(csv_filename_inventori, 'w') as writeFile: # Belum
+            fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
+            writer = csv.DictWriter(writeFile, fieldnames= fieldnames)
+            writer.writeheader()
+            for new_data in data_sementara:
+                writer.writerow({'Kode': new_data['Kode'], 'Nama': new_data['Nama'], 'Merk': new_data['Merk'], 'Ukuran': new_data['Ukuran'], 'Warna': new_data['Warna'], 'Harga': new_data['Harga'], 'Jumlah': new_data['Jumlah']})
         input("\n[ Tekan ENTER untuk melanjutkan.... ]")
         data_sementara.clear()
         menu_awal()
