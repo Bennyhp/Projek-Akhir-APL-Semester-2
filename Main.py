@@ -129,7 +129,7 @@ def tampil_data():
     print("")
     try:
         f = pd.read_csv(csv_filename_inventori, sep=',') 
-        print(tabulate(f, headers= f, tablefmt='fancy_outline', stralign='left', numalign='left', showindex=False))
+        print(tabulate(f, headers= f, tablefmt='fancy_outline', stralign='left', numalign='center', showindex=False))
     except:
         print("<<<< DATA KOSONG >>>>")
         input("\n[ Tekan ENTER untuk melanjutkan.... ]")
@@ -208,7 +208,7 @@ def pilih_asce_desc(cara):
                 bubbleSort(reskodeStr, method)
                 indeks = 0
                 for u in resdict:
-                    checking(resdict, reskodeStr[indeks], newdict)
+                    searchKode(resdict, reskodeStr[indeks], newdict)
                     indeks += 1
                 with open(csv_filename_output, mode='w') as sortedList:
                     fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -242,7 +242,7 @@ def pilih_asce_desc(cara):
                 insertionSort(reskodeStr, method)
                 indeks = 0
                 for u in resdict:
-                    checking(resdict, reskodeStr[indeks], newdict)
+                    searchKode(resdict, reskodeStr[indeks], newdict)
                     indeks += 1
                 with open(csv_filename_output, mode='w') as sortedList:
                     fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -276,7 +276,7 @@ def pilih_asce_desc(cara):
                 selectionSort(reskodeStr, len(reskodeStr), method)
                 indeks = 0
                 for u in resdict:
-                    checking(resdict, reskodeStr[indeks], newdict)
+                    searchKode(resdict, reskodeStr[indeks], newdict)
                     indeks += 1
                 with open(csv_filename_output, mode='w') as sortedList:
                     fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -310,7 +310,7 @@ def pilih_asce_desc(cara):
                 quickSort(reskodeStr, 0, len(reskodeStr)-1, method)
                 indeks = 0
                 for u in resdict:
-                    checking(resdict, reskodeStr[indeks], newdict)
+                    searchKode(resdict, reskodeStr[indeks], newdict)
                     indeks += 1
                 with open(csv_filename_output, mode='w') as sortedList:
                     fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -344,7 +344,7 @@ def pilih_asce_desc(cara):
                 mergeSort(reskodeStr, 0, len(reskodeStr)-1, method)
                 indeks = 0
                 for u in resdict:
-                    checking(resdict, reskodeStr[indeks], newdict)
+                    searchKode(resdict, reskodeStr[indeks], newdict)
                     indeks += 1
                 with open(csv_filename_output, mode='w') as sortedList:
                     fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -378,7 +378,7 @@ def pilih_asce_desc(cara):
                 shellSort(reskodeStr, len(reskodeStr), method)
                 indeks = 0
                 for u in resdict:
-                    checking(resdict, reskodeStr[indeks], newdict)
+                    searchKode(resdict, reskodeStr[indeks], newdict)
                     indeks += 1
                 with open(csv_filename_output, mode='w') as sortedList:
                     fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -436,7 +436,7 @@ def pilih_asce_desc(cara):
                 bubbleSort(reskodeStr, method)
                 indeks = 0
                 for u in resdict:
-                    checking(resdict, reskodeStr[indeks], newdict)
+                    searchKode(resdict, reskodeStr[indeks], newdict)
                     indeks += 1
                 with open(csv_filename_output, mode='w') as sortedList:
                     fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -470,7 +470,7 @@ def pilih_asce_desc(cara):
                 insertionSort(reskodeStr, method)
                 indeks = 0
                 for u in resdict:
-                    checking(resdict, reskodeStr[indeks], newdict)
+                    searchKode(resdict, reskodeStr[indeks], newdict)
                     indeks += 1
                 with open(csv_filename_output, mode='w') as sortedList:
                     fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -504,7 +504,7 @@ def pilih_asce_desc(cara):
                 selectionSort(reskodeStr, len(reskodeStr), method)
                 indeks = 0
                 for u in resdict:
-                    checking(resdict, reskodeStr[indeks], newdict)
+                    searchKode(resdict, reskodeStr[indeks], newdict)
                     indeks += 1
                 with open(csv_filename_output, mode='w') as sortedList:
                     fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -538,7 +538,7 @@ def pilih_asce_desc(cara):
                 quickSort(reskodeStr, 0, len(reskodeStr)-1, method)
                 indeks = 0
                 for u in resdict:
-                    checking(resdict, reskodeStr[indeks], newdict)
+                    searchKode(resdict, reskodeStr[indeks], newdict)
                     indeks += 1
                 with open(csv_filename_output, mode='w') as sortedList:
                     fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -572,7 +572,7 @@ def pilih_asce_desc(cara):
                 mergeSort(reskodeStr, 0, len(reskodeStr)-1, method)
                 indeks = 0
                 for u in resdict:
-                    checking(resdict, reskodeStr[indeks], newdict)
+                    searchKode(resdict, reskodeStr[indeks], newdict)
                     indeks += 1
                 with open(csv_filename_output, mode='w') as sortedList:
                     fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -606,7 +606,7 @@ def pilih_asce_desc(cara):
                 shellSort(reskodeStr, len(reskodeStr), method)
                 indeks = 0
                 for u in resdict:
-                    checking(resdict, reskodeStr[indeks], newdict)
+                    searchKode(resdict, reskodeStr[indeks], newdict)
                     indeks += 1
                 with open(csv_filename_output, mode='w') as sortedList:
                     fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -625,7 +625,7 @@ def pilih_asce_desc(cara):
                 input("\n[ Tekan ENTER untuk melanjutkan.... ]")
                 pilih_asce_desc("Descending")
 
-def checking(arr, kode, newarr):
+def searchKode(arr, kode, newarr):
     for k in arr:
         if k["Kode"] == kode:
             newarr.append(k)
@@ -1085,6 +1085,81 @@ def edit_data():
         print("<<<< INVALID INPUT >>>>")
         input("\n[ Tekan ENTER untuk melanjutkan.... ]")
         edit_data()
+
+def cari_data():
+    clear_screen()
+    print("===========================================================================")
+    print("|                                MENU CARI                                |")
+    print("===========================================================================")
+    print("|                                                                         |")
+    print("| Silahkan Pilih Yang Ingin Di Cari :                                     |")
+    print("| [1] Nama Barang                                                         |")
+    print("| [2] Merk Sepatu                                                         |")
+    print("| [0] Kembali                                                             |")
+    print("|                                                                         |")
+    print("===========================================================================")
+    pilih_cari = input("Masukkan Pilihan > ")
+    if pilih_cari == "1":
+        resdict = []
+        newdict = []
+        with open(csv_filename_inventori, mode='r') as csv_file: 
+            csv_reader = csv.DictReader(csv_file, delimiter=',')
+            for row in csv_reader:
+                resdict.append(row)
+        dicari = str(input("Masukkan Nama Yang Ingin Di Cari : "))
+        linearSearch(resdict, dicari, newdict, "nama")
+        with open(csv_filename_output, mode='w') as sortedList:
+                fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
+                writer = csv.DictWriter(sortedList, fieldnames=fieldnames)
+                writer.writeheader()
+                for new_data in newdict:
+                    writer.writerow({'Kode': new_data['Kode'], 'Nama': new_data['Nama'], 'Merk': new_data['Merk'], 'Ukuran': new_data['Ukuran'], 'Warna': new_data['Warna'], 'Harga': new_data['Harga'], 'Jumlah': new_data['Jumlah']})
+        sdf = pd.read_csv(csv_filename_output, sep=',')
+        print("")
+        print(tabulate(sdf, headers= sdf, tablefmt='fancy_outline', stralign='left', numalign='center', showindex=False))
+        if len(newdict) < 1:
+            print("<<<<< NAMA TIDAK ADA >>>>>")
+            input("\n[ Tekan ENTER untuk melanjutkan.... ]")
+            cari_data()
+        input("\n[ Tekan ENTER untuk melanjutkan.... ]")
+        cari_data()
+    elif pilih_cari == "2":
+        resdict = []
+        newdict = []
+        with open(csv_filename_inventori, mode='r') as csv_file: 
+            csv_reader = csv.DictReader(csv_file, delimiter=',')
+            for row in csv_reader:
+                resdict.append(row)
+        dicari = str(input("Masukkan Nama Yang Ingin Di Cari : "))
+        linearSearch(resdict, dicari, newdict, "merk")
+        with open(csv_filename_output, mode='w') as sortedList:
+                fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
+                writer = csv.DictWriter(sortedList, fieldnames=fieldnames)
+                writer.writeheader()
+                for new_data in newdict:
+                    writer.writerow({'Kode': new_data['Kode'], 'Nama': new_data['Nama'], 'Merk': new_data['Merk'], 'Ukuran': new_data['Ukuran'], 'Warna': new_data['Warna'], 'Harga': new_data['Harga'], 'Jumlah': new_data['Jumlah']})
+        sdf = pd.read_csv(csv_filename_output, sep=',')
+        print("")
+        print(tabulate(sdf, headers= sdf, tablefmt='fancy_outline', stralign='left', numalign='center', showindex=False))
+        if len(newdict) < 1:
+            print("<<<<< NAMA TIDAK ADA >>>>>")
+            input("\n[ Tekan ENTER untuk melanjutkan.... ]")
+            cari_data()
+        input("\n[ Tekan ENTER untuk melanjutkan.... ]")
+        cari_data()
+    elif pilih_cari == "0":
+        balik_ke_menu_awal()
+
+def linearSearch(arr, dicari, newarr, mencari):
+    for k in arr:
+        if mencari == "nama":
+            if k["Nama"] == dicari:
+                newarr.append(k) 
+        elif mencari == "merk":
+            if k["Merk"] == dicari:
+                newarr.append(k)
+    print("\n<<<< Data Ditemukan >>>>")
+    return newarr
 
 check_database()
 login()
