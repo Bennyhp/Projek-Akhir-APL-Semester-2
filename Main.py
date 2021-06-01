@@ -792,7 +792,7 @@ def tambah_data():
         input("\n[ Tekan ENTER untuk melanjutkan.... ]")
         data_found.clear()
         data_sementara.clear()
-        tambah_data()
+        menu_awal()
     else:
         with open(csv_filename_inventori, 'a') as csv_file:
             fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -808,7 +808,7 @@ def tambah_data():
             except ValueError:
                 print("\n<<<< INVALID INPUT >>>>")
                 input("\n[ Tekan ENTER untuk melanjutkan.... ]")
-                tambah_data()
+                menu_awal()
         print("\nKode             : ", kode)
         print("Nama Barang      : ", nama)
         print("Merk Sepatu      : ", merk)
