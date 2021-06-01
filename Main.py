@@ -135,6 +135,9 @@ def tampil_data():
         input("\n[ Tekan ENTER untuk melanjutkan.... ]")
         menu_awal()
 
+##########################################################################################################################################################################################
+##########################################################################################################################################################################################
+
 def pilih_sorting():
     tampil_data()
     print("===========================================================================")
@@ -175,6 +178,9 @@ def pilih_asce_desc(cara):
             print("| [1] Bubble Sort                                                         |")
             print("| [2] Insertion Sort                                                      |")
             print("| [3] Selection Sort                                                      |")
+            print("| [4] Quick Sort                                                          |")
+            print("| [5] Merge Sort                                                          |")
+            print("| [6] Shell Sort                                                          |")
             print("| [0] Kembali                                                             |")
             print("|                                                                         |")
             print("===========================================================================")
@@ -268,6 +274,108 @@ def pilih_asce_desc(cara):
                         reskodeStr.append(row["Kode"])
                         resdict.append(row)
                 selectionSort(reskodeStr, len(reskodeStr), method)
+                indeks = 0
+                for u in resdict:
+                    checking(resdict, reskodeStr[indeks], newdict)
+                    indeks += 1
+                with open(csv_filename_output, mode='w') as sortedList:
+                    fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
+                    writer = csv.DictWriter(sortedList, fieldnames=fieldnames)
+                    writer.writeheader()
+                    for new_data in newdict:
+                        writer.writerow({'Kode': new_data['Kode'], 'Nama': new_data['Nama'], 'Merk': new_data['Merk'], 'Ukuran': new_data['Ukuran'], 'Warna': new_data['Warna'], 'Harga': new_data['Harga'], 'Jumlah': new_data['Jumlah']})
+                sdf = pd.read_csv(csv_filename_output, sep=',')
+                print("")
+                print(tabulate(sdf, headers= sdf, tablefmt='fancy_outline', stralign='left', numalign='left', showindex=False))
+            elif pilih_metode == "4":
+                clear_screen()
+                print("===========================================================================")
+                print("|                               QUICK SORT                                |")
+                print("===========================================================================")
+                print("|                                                                         |")
+                print("| Data Di Sortir Menggunakan Metode Quick Sort                            |")
+                print("|                                                                         |")
+                print("===========================================================================")
+                print("|                               ASCENDING                                 |")
+                print("===========================================================================")
+                reskodeStr = []
+                resdict = []
+                newdict = []
+                method = "Ascending"
+                with open(csv_filename_inventori, mode='r') as csv_file: 
+                    csv_reader = csv.DictReader(csv_file, delimiter=',')
+                    for row in csv_reader:
+                        reskodeStr.append(row["Kode"])
+                        resdict.append(row)
+                quickSort(reskodeStr, 0, len(reskodeStr)-1, method)
+                indeks = 0
+                for u in resdict:
+                    checking(resdict, reskodeStr[indeks], newdict)
+                    indeks += 1
+                with open(csv_filename_output, mode='w') as sortedList:
+                    fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
+                    writer = csv.DictWriter(sortedList, fieldnames=fieldnames)
+                    writer.writeheader()
+                    for new_data in newdict:
+                        writer.writerow({'Kode': new_data['Kode'], 'Nama': new_data['Nama'], 'Merk': new_data['Merk'], 'Ukuran': new_data['Ukuran'], 'Warna': new_data['Warna'], 'Harga': new_data['Harga'], 'Jumlah': new_data['Jumlah']})
+                sdf = pd.read_csv(csv_filename_output, sep=',')
+                print("")
+                print(tabulate(sdf, headers= sdf, tablefmt='fancy_outline', stralign='left', numalign='left', showindex=False))
+            elif pilih_metode == "5":
+                clear_screen()
+                print("===========================================================================")
+                print("|                               MERGE SORT                                |")
+                print("===========================================================================")
+                print("|                                                                         |")
+                print("| Data Di Sortir Menggunakan Metode Merge Sort                            |")
+                print("|                                                                         |")
+                print("===========================================================================")
+                print("|                               ASCENDING                                 |")
+                print("===========================================================================")
+                reskodeStr = []
+                resdict = []
+                newdict = []
+                method = "Ascending"
+                with open(csv_filename_inventori, mode='r') as csv_file: 
+                    csv_reader = csv.DictReader(csv_file, delimiter=',')
+                    for row in csv_reader:
+                        reskodeStr.append(row["Kode"])
+                        resdict.append(row)
+                mergeSort(reskodeStr, 0, len(reskodeStr)-1, method)
+                indeks = 0
+                for u in resdict:
+                    checking(resdict, reskodeStr[indeks], newdict)
+                    indeks += 1
+                with open(csv_filename_output, mode='w') as sortedList:
+                    fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
+                    writer = csv.DictWriter(sortedList, fieldnames=fieldnames)
+                    writer.writeheader()
+                    for new_data in newdict:
+                        writer.writerow({'Kode': new_data['Kode'], 'Nama': new_data['Nama'], 'Merk': new_data['Merk'], 'Ukuran': new_data['Ukuran'], 'Warna': new_data['Warna'], 'Harga': new_data['Harga'], 'Jumlah': new_data['Jumlah']})
+                sdf = pd.read_csv(csv_filename_output, sep=',')
+                print("")
+                print(tabulate(sdf, headers= sdf, tablefmt='fancy_outline', stralign='left', numalign='left', showindex=False))
+            elif pilih_metode == "6":
+                clear_screen()
+                print("===========================================================================")
+                print("|                               SHELL SORT                                |")
+                print("===========================================================================")
+                print("|                                                                         |")
+                print("| Data Di Sortir Menggunakan Metode Shell Sort                            |")
+                print("|                                                                         |")
+                print("===========================================================================")
+                print("|                               ASCENDING                                 |")
+                print("===========================================================================")
+                reskodeStr = []
+                resdict = []
+                newdict = []
+                method = "Ascending"
+                with open(csv_filename_inventori, mode='r') as csv_file: 
+                    csv_reader = csv.DictReader(csv_file, delimiter=',')
+                    for row in csv_reader:
+                        reskodeStr.append(row["Kode"])
+                        resdict.append(row)
+                shellSort(reskodeStr, len(reskodeStr), method)
                 indeks = 0
                 for u in resdict:
                     checking(resdict, reskodeStr[indeks], newdict)
@@ -291,13 +399,16 @@ def pilih_asce_desc(cara):
     elif cara == "Descending": 
             tampil_data()
             print("===========================================================================")
-            print("|                         DESCENDING KODE BARANG                           |")
+            print("|                         DESCENDING KODE BARANG                          |")
             print("===========================================================================")
             print("|                                                                         |")
             print("| Silahkan Pilih Metode Sort :                                            |")
             print("| [1] Bubble Sort                                                         |")
             print("| [2] Insertion Sort                                                      |")
             print("| [3] Selection Sort                                                      |")
+            print("| [4] Quick Sort                                                          |")
+            print("| [5] Merge Sort                                                          |")
+            print("| [6] Shell Sort                                                          |")
             print("| [0] Kembali                                                             |")
             print("|                                                                         |")
             print("===========================================================================")
@@ -391,6 +502,108 @@ def pilih_asce_desc(cara):
                         reskodeStr.append(row["Kode"])
                         resdict.append(row)
                 selectionSort(reskodeStr, len(reskodeStr), method)
+                indeks = 0
+                for u in resdict:
+                    checking(resdict, reskodeStr[indeks], newdict)
+                    indeks += 1
+                with open(csv_filename_output, mode='w') as sortedList:
+                    fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
+                    writer = csv.DictWriter(sortedList, fieldnames=fieldnames)
+                    writer.writeheader()
+                    for new_data in newdict:
+                        writer.writerow({'Kode': new_data['Kode'], 'Nama': new_data['Nama'], 'Merk': new_data['Merk'], 'Ukuran': new_data['Ukuran'], 'Warna': new_data['Warna'], 'Harga': new_data['Harga'], 'Jumlah': new_data['Jumlah']})
+                sdf = pd.read_csv(csv_filename_output, sep=',')
+                print("")
+                print(tabulate(sdf, headers= sdf, tablefmt='fancy_outline', stralign='left', numalign='left', showindex=False))
+            elif pilih_metode == "4":
+                clear_screen()
+                print("===========================================================================")
+                print("|                               QUICK SORT                                |")
+                print("===========================================================================")
+                print("|                                                                         |")
+                print("| Data Di Sortir Menggunakan Metode Quick Sort                            |")
+                print("|                                                                         |")
+                print("===========================================================================")
+                print("|                               DESCENDING                                |")
+                print("===========================================================================")
+                reskodeStr = []
+                resdict = []
+                newdict = []
+                method = "Descending"
+                with open(csv_filename_inventori, mode='r') as csv_file: 
+                    csv_reader = csv.DictReader(csv_file, delimiter=',')
+                    for row in csv_reader:
+                        reskodeStr.append(row["Kode"])
+                        resdict.append(row)
+                quickSort(reskodeStr, 0, len(reskodeStr)-1, method)
+                indeks = 0
+                for u in resdict:
+                    checking(resdict, reskodeStr[indeks], newdict)
+                    indeks += 1
+                with open(csv_filename_output, mode='w') as sortedList:
+                    fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
+                    writer = csv.DictWriter(sortedList, fieldnames=fieldnames)
+                    writer.writeheader()
+                    for new_data in newdict:
+                        writer.writerow({'Kode': new_data['Kode'], 'Nama': new_data['Nama'], 'Merk': new_data['Merk'], 'Ukuran': new_data['Ukuran'], 'Warna': new_data['Warna'], 'Harga': new_data['Harga'], 'Jumlah': new_data['Jumlah']})
+                sdf = pd.read_csv(csv_filename_output, sep=',')
+                print("")
+                print(tabulate(sdf, headers= sdf, tablefmt='fancy_outline', stralign='left', numalign='left', showindex=False))
+            elif pilih_metode == "5":
+                clear_screen()
+                print("===========================================================================")
+                print("|                               MERGE SORT                                |")
+                print("===========================================================================")
+                print("|                                                                         |")
+                print("| Data Di Sortir Menggunakan Metode Merge Sort                            |")
+                print("|                                                                         |")
+                print("===========================================================================")
+                print("|                               DESCENDING                                |")
+                print("===========================================================================")
+                reskodeStr = []
+                resdict = []
+                newdict = []
+                method = "Descending"
+                with open(csv_filename_inventori, mode='r') as csv_file: 
+                    csv_reader = csv.DictReader(csv_file, delimiter=',')
+                    for row in csv_reader:
+                        reskodeStr.append(row["Kode"])
+                        resdict.append(row)
+                mergeSort(reskodeStr, 0, len(reskodeStr)-1, method)
+                indeks = 0
+                for u in resdict:
+                    checking(resdict, reskodeStr[indeks], newdict)
+                    indeks += 1
+                with open(csv_filename_output, mode='w') as sortedList:
+                    fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
+                    writer = csv.DictWriter(sortedList, fieldnames=fieldnames)
+                    writer.writeheader()
+                    for new_data in newdict:
+                        writer.writerow({'Kode': new_data['Kode'], 'Nama': new_data['Nama'], 'Merk': new_data['Merk'], 'Ukuran': new_data['Ukuran'], 'Warna': new_data['Warna'], 'Harga': new_data['Harga'], 'Jumlah': new_data['Jumlah']})
+                sdf = pd.read_csv(csv_filename_output, sep=',')
+                print("")
+                print(tabulate(sdf, headers= sdf, tablefmt='fancy_outline', stralign='left', numalign='left', showindex=False))
+            elif pilih_metode == "6":
+                clear_screen()
+                print("===========================================================================")
+                print("|                               SHELL SORT                                |")
+                print("===========================================================================")
+                print("|                                                                         |")
+                print("| Data Di Sortir Menggunakan Metode Shell Sort                            |")
+                print("|                                                                         |")
+                print("===========================================================================")
+                print("|                               DESCENDING                                |")
+                print("===========================================================================")
+                reskodeStr = []
+                resdict = []
+                newdict = []
+                method = "Descending"
+                with open(csv_filename_inventori, mode='r') as csv_file: 
+                    csv_reader = csv.DictReader(csv_file, delimiter=',')
+                    for row in csv_reader:
+                        reskodeStr.append(row["Kode"])
+                        resdict.append(row)
+                shellSort(reskodeStr, len(reskodeStr), method)
                 indeks = 0
                 for u in resdict:
                     checking(resdict, reskodeStr[indeks], newdict)
@@ -456,6 +669,90 @@ def selectionSort(array, size, method):
                     min_idx = i
         array[step], array[min_idx] = array[min_idx],array[step]
 
+def partition(array, low, high, order):
+    pivot = array[high]
+    i = low - 1
+    for j in range(low, high):
+        if order == "Ascending":
+            if array[j] <= pivot:
+                i = i + 1
+                array[i], array[j] = array[j], array[i]
+        elif order == "Descending":
+            if array[j] >= pivot:
+                i = i + 1
+                array[i], array[j] = array[j], array[i]
+    array[i + 1], array[high] = array[high], array[i + 1]
+    return i + 1
+
+def quickSort(array, low, high, order):
+    if low < high:
+        pi = partition(array, low, high, order)
+        quickSort(array, low, pi - 1, order)
+        quickSort(array, pi + 1, high, order)
+
+def merge(arr, l, m, r, order):
+    n1 = m - l + 1
+    n2 = r - m
+    L = [0] * (n1)
+    R = [0] * (n2)
+    for i in range(0 , n1):
+        L[i] = arr[l + i]
+    for j in range(0 , n2):
+        R[j] = arr[m + 1 + j]
+    i = 0
+    j = 0
+    k = l
+    while i < n1 and j < n2 :
+        if order == "Ascending":
+            if L[i] <= R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+        elif order == "Descending":
+            if L[i] >= R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+        k += 1
+    while i < n1:
+        arr[k] = L[i]
+        i += 1
+        k += 1
+    while j < n2:
+        arr[k] = R[j]
+        j += 1
+        k += 1
+
+def mergeSort(arr, l, r, order):
+    if l < r:
+        m = (l + (r - 1)) // 2
+        mergeSort(arr, l, m, order)
+        mergeSort(arr, m + 1, r, order)
+        merge(arr, l, m, r, order)
+
+def shellSort(array, n, order):
+    interval = n // 2
+    while interval > 0:
+        for i in range(interval, n):
+            temp = array[i]
+            j = i
+            if order == "Ascending":
+                while j >= interval and array[j - interval] > temp:
+                    array[j] = array[j - interval]
+                    j -= interval
+            elif order == "Descending":
+                while j >= interval and array[j - interval] < temp:
+                    array[j] = array[j - interval]
+                    j -= interval
+            array[j] = temp
+        interval //= 2
+
+##########################################################################################################################################################################################
+##########################################################################################################################################################################################
 
 def tambah_data():
     tampil_data()
