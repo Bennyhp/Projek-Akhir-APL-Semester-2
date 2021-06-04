@@ -1133,7 +1133,7 @@ def cari_data():
             csv_reader = csv.DictReader(csv_file, delimiter=',')
             for row in csv_reader:
                 resdict.append(row)
-        dicari = str(input("Masukkan Nama Yang Ingin Di Cari : "))
+        dicari = str(input("Masukkan Merk Yang Ingin Di Cari : "))
         linearSearch(resdict, dicari, newdict, "merk")
         with open(csv_filename_output, mode='w') as sortedList:
                 fieldnames = ['Kode', 'Nama', 'Merk', 'Ukuran', 'Warna', 'Harga', 'Jumlah']
@@ -1145,7 +1145,7 @@ def cari_data():
         print("")
         print(tabulate(sdf, headers= sdf, tablefmt='fancy_outline', stralign='left', numalign='center', showindex=False))
         if len(newdict) < 1:
-            print("<<<<< NAMA TIDAK ADA >>>>>")
+            print("<<<<< MERK TIDAK ADA >>>>>")
             input("\n[ Tekan ENTER untuk melanjutkan.... ]")
             cari_data()
         input("\n[ Tekan ENTER untuk melanjutkan.... ]")
